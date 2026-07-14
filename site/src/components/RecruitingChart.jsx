@@ -9,8 +9,9 @@ const DIVISION_ORDER = [
   'NCAA D1 (FCS)',
   'NCAA D1 (No Football)',
   'NCAA D2',
+  'NCAA D3',
+  'NAIA',
   '2-Year (JUCO)',
-  'Other',
 ]
 
 const DIVISION_LABELS = {
@@ -18,9 +19,12 @@ const DIVISION_LABELS = {
   'NCAA D1 (FCS)': 'FCS',
   'NCAA D1 (No Football)': 'D1 No Football',
   'NCAA D2': 'Division II',
+  'NCAA D3': 'Division III',
+  'NAIA': 'NAIA',
   '2-Year (JUCO)': '2-Year (JUCO)',
-  'Other': 'Other',
 }
+
+const D1_LABELS = ['FBS', 'FCS', 'D1 No Football']
 
 const fmt = (v) => `$${Math.round(v).toLocaleString()}`
 
@@ -60,14 +64,14 @@ export default function RecruitingChart({ showShare = false }) {
     : 'Median recruiting spend per athlete by division (2024)'
 
   const ariaLabel = showShare
-    ? 'Bar chart: Division I programs account for 88.7% of all recruiting dollars. FBS alone: 68.2%. JUCO: 1.2%.'
-    : 'Bar chart: FBS median $151/athlete, FCS $690/athlete, D1 No Football $786/athlete, Division II $118/athlete, 2-Year JUCO $60/athlete'
+    ? 'Bar chart: Division I programs account for 87.1% of all recruiting dollars. FBS alone: 66.5%. Division III: 5.4%, Division II: 4.2%, NAIA: 1.6%, JUCO: 1.2%.'
+    : 'Bar chart of median recruiting spend per athlete by division: FBS $3,598, D1 No Football $786, FCS $705, Division II $132, Division III $114, NAIA $76, 2-Year JUCO $60'
 
   return (
     <figure>
       <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{title}</p>
       <div role="img" aria-label={ariaLabel}>
-        <ResponsiveContainer width="100%" height={260}>
+        <ResponsiveContainer width="100%" height={290}>
           <BarChart
             data={chartData}
             layout="vertical"
@@ -93,11 +97,11 @@ export default function RecruitingChart({ showShare = false }) {
               formatter={(v) => [showShare ? `${v}%` : fmt(v), showShare ? 'Share' : 'Per athlete']}
               contentStyle={{ fontSize: 11, border: '1px solid #e5e7eb', borderRadius: 6 }}
             />
-            <Bar dataKey="value" radius={[0, 3, 3, 0]} fill="#374151">
+            <Bar dataKey="value" radius={[0, 3, 3, 0]}>
               {chartData.map((entry) => (
                 <Cell
                   key={entry.division}
-                  fill={entry.division === 'FBS' || entry.division.includes('FCS') || entry.division.includes('No Football') ? '#E8472B' : '#d1d5db'}
+                  fill={D1_LABELS.includes(entry.division) ? '#E8472B' : '#d1d5db'}
                 />
               ))}
               <LabelList
@@ -110,13 +114,10 @@ export default function RecruitingChart({ showShare = false }) {
         </ResponsiveContainer>
       </div>
       <figcaption className="source-caption">
-        <strong>Note:</strong> "NCAA D3" and "NAIA" divisions are absent from this dataset due to a
-        pipeline classification issue (see Methodology). Those schools are currently grouped in "Other."
-        A corrected pipeline run will restore them.
-        <br />
         <strong>Source:</strong> U.S. Department of Education, EADA data files (2015, 2019, 2024 surveys),
         processed by an open pipeline (repo link on Methodology page). Schools reporting $0 recruiting
-        excluded from medians.
+        excluded from medians. A small number of schools classified "Other" appear in the lookup but
+        not this chart.
       </figcaption>
     </figure>
   )

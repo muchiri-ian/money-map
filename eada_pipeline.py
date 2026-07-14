@@ -95,13 +95,18 @@ MANUAL_OVERRIDES: dict[str, dict[str, str]] = {}
 
 # Map EADA classification text -> the division buckets used on the site.
 # Checked top-to-bottom; first regex hit wins.
+# Order matters: D3 and D2 are checked before the bare "Division I" pattern
+# because "Division III" contains "Division I" (and "Division II") as
+# substrings, which previously misrouted every D3 school into the D1 bucket.
+# The old FBS/FCS patterns also carried `I-?A\b` / `I-?AA\b` alternates that
+# matched the "IA" inside "NAIA", swallowing every NAIA school into FBS.
 DIVISION_BUCKETS = [
-    (r"NCAA.*Division I-?FBS|I-?A\b",          "NCAA D1 (FBS)"),
-    (r"NCAA.*Division I-?FCS|I-?AA\b",         "NCAA D1 (FCS)"),
-    (r"NCAA.*Division I\b(?!I)",               "NCAA D1 (No Football)"),
-    (r"NCAA.*Division II",                     "NCAA D2"),
-    (r"NCAA.*Division III",                    "NCAA D3"),
-    (r"NAIA",                                  "NAIA"),
+    (r"NCAA.*Division I-?FBS\b",               "NCAA D1 (FBS)"),
+    (r"NCAA.*Division I-?FCS\b",               "NCAA D1 (FCS)"),
+    (r"NCAA.*Division III\b",                  "NCAA D3"),
+    (r"NCAA.*Division II\b",                   "NCAA D2"),
+    (r"NCAA.*Division I\b",                    "NCAA D1 (No Football)"),
+    (r"\bNAIA\b",                              "NAIA"),
     (r"NJCAA|junior college|two.?year|CCCAA|community college", "2-Year (JUCO)"),
     (r".*",                                    "Other"),
 ]

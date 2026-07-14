@@ -117,13 +117,11 @@ export default function Methodology() {
           classification fields. Per-athlete metrics computed as spend divided by unduplicated
           participants. Code: [REPO_URL]. Anyone can rerun it.
         </p>
-        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
-          <strong>Note on division classification:</strong> The pipeline currently misclassifies NAIA
-          schools as "NCAA D1 (FBS)" and D3 schools as "NCAA D1 (No Football)" due to regex pattern
-          bugs in the DIVISION_BUCKETS list. A corrected pipeline is documented in SLOTS_REPORT.md.
-          Finding 3 uses the current data and notes the limitation. The fix requires one code edit
-          and a rerun of <code className="bg-amber-100 px-1 rounded">python eada_pipeline.py all</code>.
-        </div>
+        <p className="text-sm text-gray-500 leading-relaxed">
+          An earlier pipeline version misclassified NAIA and Division III schools (regex pattern
+          bugs, documented and fixed in the repo history — see SLOTS_REPORT.md). All figures on
+          this site come from the corrected run.
+        </p>
       </section>
 
       {/* C — Limitations */}

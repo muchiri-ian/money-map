@@ -78,10 +78,10 @@ export default function Findings() {
             disclose its recruiting spending to the Department of Education every year.
           </p>
           <p>
-            In the 2024 survey, the median FBS program spent <strong>$151</strong> per athlete
+            In the 2024 survey, the median FBS program spent <strong>$3,598</strong> per athlete
             finding talent. The median two-year college spent <strong>$60</strong>. That is a{' '}
-            <strong>2.5x</strong> gap in discovery budget per athlete. Division I programs, 33.7%
-            of schools reporting recruiting spend, account for <strong>88.7%</strong> of every
+            <strong>60.4x</strong> gap in discovery budget per athlete. Division I programs, 21.7%
+            of schools reporting recruiting spend, account for <strong>87.1%</strong> of every
             recruiting dollar in the data.
           </p>
           <p>
