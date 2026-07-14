@@ -1,0 +1,188 @@
+export default function Methodology() {
+  const citations = [
+    {
+      stat: 'D1 revenue, FY2024',
+      value: '$14.6B',
+      vintage: 'FY2024',
+      source: 'Knight-Newhouse College Athletics Database',
+      link: 'https://knightnewhousedata.org',
+    },
+    {
+      stat: 'NFL, MLB, NBA, NHL, MLS revenues',
+      value: 'Various',
+      vintage: 'FY2024',
+      source: 'Economic Policy Institute compilation',
+      link: null,
+    },
+    {
+      stat: 'NIL transfer premium',
+      value: '1.7x',
+      vintage: 'Jul 2021–Jun 2024',
+      source: 'Opendorse "NIL at 3" (House v. NCAA, Doc 539-14)',
+      link: null,
+    },
+    {
+      stat: 'NIL agent premium',
+      value: '5.3x',
+      vintage: 'Jul 2021–Jun 2024',
+      source: 'Opendorse "NIL at 3" (House v. NCAA, Doc 539-14)',
+      link: null,
+    },
+    {
+      stat: 'NIL collective share',
+      value: '>80%',
+      vintage: 'Jul 2021–Jun 2024',
+      source: 'Opendorse "NIL at 3" (House v. NCAA, Doc 539-14)',
+      link: null,
+    },
+    {
+      stat: 'EADA recruiting medians by division',
+      value: 'See Finding 3',
+      vintage: '2015, 2019, 2024',
+      source: 'U.S. Dept. of Education EADA data files',
+      link: 'https://ope.ed.gov/athletics/#/datafile/list',
+    },
+    {
+      stat: 'House settlement cap amounts',
+      value: '$20.5M / $21.3M',
+      vintage: 'Approved Jun 6, 2025',
+      source: 'House v. NCAA settlement; Knight Commission brief (2025)',
+      link: null,
+    },
+    {
+      stat: 'House back-damages split',
+      value: '>95% to FB/BB',
+      vintage: '2025',
+      source: 'House v. NCAA settlement documents',
+      link: null,
+    },
+    {
+      stat: 'High school athlete count',
+      value: '~8,000,000',
+      vintage: '2024-25',
+      source: 'NFHS participation survey',
+      link: 'https://www.nfhs.org/articles/participation-survey/',
+    },
+    {
+      stat: 'NCAA athlete count',
+      value: '~560,000',
+      vintage: '2024-25',
+      source: 'NCAA Sports Sponsorship and Participation Rates Report',
+      link: 'https://www.ncaa.org/sports/2018/9/6/ncaa-sports-sponsorship-and-participation-rates-report.aspx',
+    },
+    {
+      stat: "Men's basketball funnel",
+      value: '3.6%',
+      vintage: '2024-25',
+      source: 'NCAA Probability of Competing Beyond High School',
+      link: 'https://www.ncaa.org/sports/2015/3/2/probability-of-competing-beyond-high-school.aspx',
+    },
+  ]
+
+  return (
+    <div className="max-w-3xl mx-auto px-6 py-12">
+      <h1 className="text-3xl font-black text-gray-900 mb-3">Methodology</h1>
+      <p className="text-gray-600 mb-10 text-sm leading-relaxed">
+        Every number on this site traces to a public source. This page is the map.
+      </p>
+
+      {/* A — Sources */}
+      <section className="mb-12">
+        <h2 className="text-lg font-bold text-gray-900 mb-4">A — Sources</h2>
+        <ul className="space-y-3 text-sm text-gray-700">
+          {[
+            'U.S. Dept. of Education, EADA data files (2003–2024): recruiting expenses, athletic aid, participation, revenues and expenses for every Title IV school with athletics. The only dataset here I process myself.',
+            'Knight-Newhouse College Athletics Database: audited MFRS financial reports for 230+ public D1 schools; the authoritative D1 finance source.',
+            'Opendorse "NIL at 3" report: the largest public NIL transaction dataset (150,000+ athletes, $250M+ disclosed), cited from the court-filed exhibit in House v. NCAA rather than marketing copy.',
+            'House v. NCAA settlement documents and legal summaries.',
+            'NCAA research: probability-of-competing data, demographics database, transfer dashboards.',
+            'National Student Clearinghouse: education-wide two-year to four-year transfer outcomes.',
+          ].map((s) => (
+            <li key={s} className="flex gap-2">
+              <span className="text-red-500 mt-0.5 flex-shrink-0">—</span>
+              <span>{s}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* B — What I did to the EADA data */}
+      <section className="mb-12">
+        <h2 className="text-lg font-bold text-gray-900 mb-4">B — What I did to the EADA data</h2>
+        <p className="text-sm text-gray-700 leading-relaxed mb-3">
+          Downloaded survey zips for 2015, 2019, 2024. Columns were auto-mapped with a printed,
+          human-verified mapping. Currency fields coerced to numbers. Institutions reporting zero
+          athletes were dropped (0 rows). Schools reporting $0 recruiting were kept in the lookup
+          but excluded from medians (388 schools in 2024). Divisions classified from EADA
+          classification fields. Per-athlete metrics computed as spend divided by unduplicated
+          participants. Code: [REPO_URL]. Anyone can rerun it.
+        </p>
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
+          <strong>Note on division classification:</strong> The pipeline currently misclassifies NAIA
+          schools as "NCAA D1 (FBS)" and D3 schools as "NCAA D1 (No Football)" due to regex pattern
+          bugs in the DIVISION_BUCKETS list. A corrected pipeline is documented in SLOTS_REPORT.md.
+          Finding 3 uses the current data and notes the limitation. The fix requires one code edit
+          and a rerun of <code className="bg-amber-100 px-1 rounded">python eada_pipeline.py all</code>.
+        </div>
+      </section>
+
+      {/* C — Limitations */}
+      <section className="mb-12">
+        <h2 className="text-lg font-bold text-gray-900 mb-4">C — Limitations, stated plainly</h2>
+        <ol className="space-y-3 text-sm text-gray-700 list-decimal list-inside">
+          {[
+            'EADA is self-reported; year-over-year jumps can reflect reporting changes rather than real spending changes.',
+            'Industry-wide NIL disclosure is estimated below 50%; that is why this site presents NIL ratios, never market sizes.',
+            'Division buckets follow EADA classifications; a small number of schools sit in "Other" and appear in the lookup but not the division charts.',
+            'This volume is descriptive. It measures where money goes, not why, and makes no causal claims. Vol. 2 will model pricing directly.',
+          ].map((s, i) => (
+            <li key={i} className="flex gap-2">
+              <span className="text-red-600 font-bold flex-shrink-0">{i + 1}.</span>
+              <span>{s}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* D — Citations table */}
+      <section>
+        <h2 className="text-lg font-bold text-gray-900 mb-4">D — Citations</h2>
+        <div className="overflow-x-auto rounded-xl border border-gray-200">
+          <table className="w-full text-xs text-left">
+            <thead className="bg-gray-50 border-b border-gray-200">
+              <tr>
+                {['Stat', 'Value', 'Vintage', 'Source', 'Link'].map((h) => (
+                  <th key={h} scope="col" className="px-3 py-2.5 font-semibold text-gray-600">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {citations.map((c, i) => (
+                <tr key={i} className="hover:bg-gray-50">
+                  <td className="px-3 py-2.5 text-gray-700 font-medium">{c.stat}</td>
+                  <td className="px-3 py-2.5 text-gray-900 font-bold whitespace-nowrap">{c.value}</td>
+                  <td className="px-3 py-2.5 text-gray-500 whitespace-nowrap">{c.vintage}</td>
+                  <td className="px-3 py-2.5 text-gray-600">{c.source}</td>
+                  <td className="px-3 py-2.5">
+                    {c.link ? (
+                      <a
+                        href={c.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-red-600 underline hover:text-red-800"
+                      >
+                        Link
+                      </a>
+                    ) : (
+                      <span className="text-gray-400">Court filing</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  )
+}
