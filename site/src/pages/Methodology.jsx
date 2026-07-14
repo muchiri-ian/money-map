@@ -120,7 +120,16 @@ export default function Methodology() {
           athletes were dropped (0 rows). Schools reporting $0 recruiting were kept in the lookup
           but excluded from medians (388 schools in 2024). Divisions classified from EADA
           classification fields. Per-athlete metrics computed as spend divided by unduplicated
-          participants. Code: [REPO_URL]. Anyone can rerun it.
+          participants. Code:{' '}
+          <a
+            href="https://github.com/PressKit2026/money-map"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-red-600 underline hover:text-red-800"
+          >
+            github.com/PressKit2026/money-map
+          </a>
+          . Anyone can rerun it.
         </p>
         <p className="text-sm text-gray-500 leading-relaxed">
           An earlier pipeline version misclassified NAIA and Division III schools (regex pattern
