@@ -1,0 +1,11 @@
+# Raw EADA files — large binaries, download from ope.ed.gov/athletics
+data/raw/
+
+# Python
+__pycache__/
+*.pyc
+data/interim/
+
+# Node / Vite
+site/node_modules/
+site/dist/
