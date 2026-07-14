@@ -1,14 +1,8 @@
 export default function FunnelChart() {
-  const stages = [
-    { label: '~8,000,000', sub: 'High school athletes in the U.S.', width: '100%', bg: '#1f2937' },
-    { label: '~560,000', sub: 'NCAA athletes (~7%)', width: '60%', bg: '#374151' },
-    { label: 'NIL & Revenue-Share Pool', sub: 'Where the money concentrates', width: '22%', bg: '#E8472B' },
-  ]
-
   return (
     <figure>
       <svg
-        viewBox="0 0 600 260"
+        viewBox="0 0 600 272"
         role="img"
         aria-label="Funnel showing 8 million high school athletes narrowing to 560,000 NCAA athletes, then to the small fraction who receive NIL and revenue-share money"
         className="w-full max-w-xl mx-auto block"
@@ -29,10 +23,11 @@ export default function FunnelChart() {
         {/* Arrow */}
         <polygon points="300,180 290,192 310,192" fill="#9ca3af" />
 
-        {/* Stage 3 */}
-        <rect x="210" y="196" width="180" height="60" rx="4" fill="#E8472B" />
-        <text x="300" y="221" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold" fontFamily="Inter, sans-serif">NIL &amp; Revenue-Share Pool</text>
-        <text x="300" y="242" textAnchor="middle" fill="rgba(255,255,255,0.85)" fontSize="10" fontFamily="Inter, sans-serif">Football &amp; basketball / power conferences</text>
+        {/* Stage 3 — sub-label wraps to two lines so nothing overflows the box */}
+        <rect x="210" y="196" width="180" height="72" rx="4" fill="#E8472B" />
+        <text x="300" y="220" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold" fontFamily="Inter, sans-serif">NIL &amp; Revenue-Share Pool</text>
+        <text x="300" y="238" textAnchor="middle" fill="rgba(255,255,255,0.85)" fontSize="10" fontFamily="Inter, sans-serif">Football &amp; basketball,</text>
+        <text x="300" y="253" textAnchor="middle" fill="rgba(255,255,255,0.85)" fontSize="10" fontFamily="Inter, sans-serif">power conferences</text>
       </svg>
       <figcaption className="source-caption text-center max-w-xl mx-auto">
         Nearly eight million students play high school sports; about 560,000 compete in the NCAA. In men's

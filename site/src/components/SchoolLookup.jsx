@@ -4,6 +4,17 @@ import Papa from 'papaparse'
 const fmt = (v) =>
   v != null && !isNaN(v) ? `$${Math.round(v).toLocaleString()}` : '—'
 
+// "University of California-Los Angeles" → "ucla", so acronym queries like
+// UCLA/USC/UAB match schools whose federal names never contain the acronym
+const STOP_WORDS = new Set(['of', 'the', 'at', 'and', 'in', 'for'])
+const acronym = (name) =>
+  name
+    .split(/[\s-]+/)
+    .filter((w) => w && !STOP_WORDS.has(w.toLowerCase()))
+    .map((w) => w[0])
+    .join('')
+    .toLowerCase()
+
 const fmtMultiple = (v) => {
   if (v == null || isNaN(v) || v === 0) return null
   return `${v.toFixed(1)}x division median`
@@ -16,7 +27,7 @@ function ResultCard({ school }) {
     vsMedian > 1 ? 'text-green-700 bg-green-50' : 'text-red-700 bg-red-50'
 
   return (
-    <div className="border border-gray-200 rounded-xl p-5 bg-white shadow-sm">
+    <div className="border border-gray-200 rounded-xl p-5 bg-white shadow-sm animate-fade-up transition-all duration-200 hover:border-gray-300 hover:shadow-md">
       <div className="flex items-start justify-between gap-2">
         <div>
           <h3 className="font-bold text-gray-900 text-base leading-tight">{school.institution}</h3>
@@ -66,7 +77,12 @@ export default function SchoolLookup() {
       download: true,
       header: true,
       dynamicTyping: true,
-      complete: ({ data }) => setAllSchools(data.filter((r) => r.institution)),
+      complete: ({ data }) =>
+        setAllSchools(
+          data
+            .filter((r) => r.institution)
+            .map((r) => ({ ...r, _acro: acronym(r.institution) })),
+        ),
     })
   }, [])
 
@@ -76,16 +92,22 @@ export default function SchoolLookup() {
       return
     }
     const q = query.toLowerCase()
+    const score = (s) => {
+      if (q.length >= 2 && s._acro === q) return 2
+      if (q.length >= 2 && s._acro.startsWith(q)) return 1
+      return 0
+    }
     const matches = allSchools
-      .filter((s) => s.institution.toLowerCase().includes(q))
+      .filter((s) => s.institution.toLowerCase().includes(q) || score(s) > 0)
+      .sort((a, b) => score(b) - score(a))
       .slice(0, 8)
     setResults(matches)
   }, [query, allSchools])
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-12">
-      <h1 className="text-3xl font-black text-gray-900 mb-2">Look up any school</h1>
-      <p className="text-gray-600 mb-8 text-sm leading-relaxed">
+      <h1 className="text-3xl sm:text-4xl font-black text-gray-900 mb-2">Look up any school</h1>
+      <p className="text-gray-600 mb-10 text-sm leading-relaxed">
         Recruiting spend, athletic aid, and dollars per athlete for every Title IV school with an
         athletics program, from the 2024-25 federal EADA survey.
       </p>

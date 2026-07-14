@@ -12,7 +12,7 @@ export default function Methodology() {
       value: 'Various',
       vintage: 'FY2024',
       source: 'Economic Policy Institute compilation',
-      link: null,
+      link: 'https://www.epi.org/blog/a-snapshot-of-college-athletes-who-are-they-and-how-much-do-they-earn/',
     },
     {
       stat: 'NIL transfer premium',
@@ -20,6 +20,7 @@ export default function Methodology() {
       vintage: 'Jul 2021–Jun 2024',
       source: 'Opendorse "NIL at 3" (House v. NCAA, Doc 539-14)',
       link: null,
+      noLink: 'Court filing',
     },
     {
       stat: 'NIL agent premium',
@@ -27,6 +28,7 @@ export default function Methodology() {
       vintage: 'Jul 2021–Jun 2024',
       source: 'Opendorse "NIL at 3" (House v. NCAA, Doc 539-14)',
       link: null,
+      noLink: 'Court filing',
     },
     {
       stat: 'NIL collective share',
@@ -34,6 +36,7 @@ export default function Methodology() {
       vintage: 'Jul 2021–Jun 2024',
       source: 'Opendorse "NIL at 3" (House v. NCAA, Doc 539-14)',
       link: null,
+      noLink: 'Court filing',
     },
     {
       stat: 'EADA recruiting medians by division',
@@ -48,6 +51,7 @@ export default function Methodology() {
       vintage: 'Approved Jun 6, 2025',
       source: 'House v. NCAA settlement; Knight Commission brief (2025)',
       link: null,
+      noLink: 'Court filing',
     },
     {
       stat: 'House back-damages split',
@@ -55,33 +59,34 @@ export default function Methodology() {
       vintage: '2025',
       source: 'House v. NCAA settlement documents',
       link: null,
+      noLink: 'Court filing',
     },
     {
       stat: 'High school athlete count',
       value: '~8,000,000',
       vintage: '2024-25',
       source: 'NFHS participation survey',
-      link: 'https://www.nfhs.org/articles/participation-survey/',
+      link: 'https://nfhs.org/resources/sports/high-school-participation-survey-archive',
     },
     {
       stat: 'NCAA athlete count',
       value: '~560,000',
       vintage: '2024-25',
       source: 'NCAA Sports Sponsorship and Participation Rates Report',
-      link: 'https://www.ncaa.org/sports/2018/9/6/ncaa-sports-sponsorship-and-participation-rates-report.aspx',
+      link: 'https://www.ncaa.org/what-we-do/research/sport-sponsorship-and-participation-data/',
     },
     {
       stat: "Men's basketball funnel",
       value: '3.6%',
       vintage: '2024-25',
       source: 'NCAA Probability of Competing Beyond High School',
-      link: 'https://www.ncaa.org/sports/2015/3/2/probability-of-competing-beyond-high-school.aspx',
+      link: 'https://www.ncaa.org/student-athletes/probability-of-competing-beyond-high-school/',
     },
   ]
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-12">
-      <h1 className="text-3xl font-black text-gray-900 mb-3">Methodology</h1>
+      <h1 className="text-3xl sm:text-4xl font-black text-gray-900 mb-2">Methodology</h1>
       <p className="text-gray-600 mb-10 text-sm leading-relaxed">
         Every number on this site traces to a public source. This page is the map.
       </p>
@@ -172,7 +177,7 @@ export default function Methodology() {
                         Link
                       </a>
                     ) : (
-                      <span className="text-gray-400">Court filing</span>
+                      <span className="text-gray-400">{c.noLink}</span>
                     )}
                   </td>
                 </tr>

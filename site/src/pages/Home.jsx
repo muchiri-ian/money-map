@@ -22,7 +22,7 @@ export default function Home() {
       {/* Hero */}
       <section className="bg-gray-900 text-white py-20 px-6">
         <div className="max-w-3xl mx-auto">
-          <p className="text-xs font-semibold uppercase tracking-widest text-red-400 mb-4">Vol. 1</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-red-400 mb-4">Vol. 1 — July 2026</p>
           <h1 className="text-4xl sm:text-6xl font-black leading-tight mb-3">
             The Overlooked<br />Athlete Economy
           </h1>
@@ -41,7 +41,10 @@ export default function Home() {
       <section className="max-w-5xl mx-auto px-6 py-12" aria-label="Key statistics">
         <div className="grid sm:grid-cols-3 gap-6">
           {statCards.map(({ stat, desc }) => (
-            <div key={stat} className="bg-gray-50 border border-gray-200 rounded-xl p-6">
+            <div
+              key={stat}
+              className="bg-gray-50 border border-gray-200 rounded-xl p-6 transition-all duration-200 hover:border-gray-300 hover:shadow-md"
+            >
               <div className="text-4xl font-black text-red-600 mb-3">{stat}</div>
               <p className="text-sm text-gray-700 leading-relaxed">{desc}</p>
             </div>
@@ -58,7 +61,7 @@ export default function Home() {
       {/* Why this project */}
       <section className="border-t border-gray-100 py-12 px-6">
         <div className="max-w-2xl mx-auto prose prose-sm">
-          <h2 className="text-xl font-bold mb-4">Why this project exists</h2>
+          <h2 className="text-2xl font-bold mb-4">Why this project exists</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
             The money in college sports concentrates on athletes who are already visible. Recruiting
             budgets, NIL collectives, and the new revenue-share pool all point at the same small
