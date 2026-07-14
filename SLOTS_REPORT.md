@@ -40,20 +40,21 @@ hundreds of low-spend NAIA schools misfiled as FBS. The corrected numbers:
 
 ---
 
-## Remaining Flag — Year Labels: CSV vs. EADA Convention
+## Year Labels — RESOLVED: Academic-Year Ranges (2026-07-14)
 
-**PART D example:** YEARS_USED = "2015, 2019, 2024" (end-year EADA convention)
-**CSV actual years:** 2014, 2018, 2024 (start-year, as extracted by pipeline)
+The single-year ambiguity (CSV start-year "2024" vs. EADA end-year convention "2025")
+is resolved by displaying **academic-year ranges matching the EADA source filenames**
+(e.g. "EADA All Data Combined 2014-2015" → displayed as "2014-15").
 
-The pipeline's `year_from_name()` extracts the **first** 4-digit year from filenames like
-"EADA All Data Combined **2014**-2015". The EADA website calls this the "2015 survey."
+**Derivation rule:** a CSV year key `y` renders as `{y}-{(y+1) % 100, zero-padded}`:
+2014 → "2014-15", 2018 → "2018-19", 2024 → "2024-25".
 
-**Site is built with "2015, 2019, 2024" for public-facing citations** (matching EADA
-convention). Internal CSV year keys remain 2014/2018/2024. If you prefer
-"2014, 2018, 2024", find and replace in `src/pages/Methodology.jsx`.
+This rule is implemented programmatically in `site/src/components/RecruitingChart.jsx`
+(`acadYear()` — chart titles derive from `max(year)` in the CSV at runtime) and as
+static text everywhere else the survey year appears (Findings copy, lookup tool
+header and data note, Methodology sources/citations, global footer).
 
-For LATEST_YEAR: site shows **2024** (matches `max(year)` formula; the source file is
-"2024-2025"). Confirm this is the survey label you intend to cite.
+Internal CSV year keys remain integers (2014/2018/2024); only display formatting changed.
 
 ---
 
@@ -61,8 +62,8 @@ For LATEST_YEAR: site shows **2024** (matches `max(year)` formula; the source fi
 
 | Token | Raw Value | Formula | Formatted Value |
 |---|---|---|---|
-| `{{LATEST_YEAR}}` | 2024 | `max(year)` in division_summary.csv | **2024** |
-| `{{YEARS_USED}}` | 2014, 2018, 2024 (CSV) | sorted unique years | **2015, 2019, 2024** *(see flag)* |
+| `{{LATEST_YEAR}}` | 2024 | `max(year)` in division_summary.csv, displayed as academic-year range | **2024-25** |
+| `{{YEARS_USED}}` | 2014, 2018, 2024 (CSV) | sorted unique years, each displayed as academic-year range | **2014-15, 2018-19, 2024-25** |
 | `{{FBS_PER_ATHLETE}}` | 3598.3346… | `recruit_per_athlete_median` where division="NCAA D1 (FBS)", year=2024 | **$3,598** |
 | `{{JUCO_PER_ATHLETE}}` | 59.5934… | `recruit_per_athlete_median` where division="2-Year (JUCO)", year=2024 | **$60** |
 | `{{GAP_MULT}}` | 60.3813… | FBS_PER_ATHLETE ÷ JUCO_PER_ATHLETE = 3598.33 ÷ 59.59 | **60.4** |
@@ -72,7 +73,7 @@ For LATEST_YEAR: site shows **2024** (matches `max(year)` formula; the source fi
 | `{{ZERO_RECRUIT_COUNT}}` | 388 | pipeline log: "388 schools report $0 recruiting" for 2024 | **388** |
 | `[REPO_URL]` | — | Filled by human after GitHub push | *(human fills)* |
 
-## Finding 3 Chart Data (2024, corrected)
+## Finding 3 Chart Data (2024-25 survey, corrected)
 
 | Division | recruit_per_athlete_median | recruit_share_of_year |
 |---|---|---|

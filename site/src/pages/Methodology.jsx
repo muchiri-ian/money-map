@@ -38,7 +38,7 @@ export default function Methodology() {
     {
       stat: 'EADA recruiting medians by division',
       value: 'See Finding 3',
-      vintage: '2015, 2019, 2024',
+      vintage: '2014-15, 2018-19, 2024-25',
       source: 'U.S. Dept. of Education EADA data files',
       link: 'https://ope.ed.gov/athletics/#/datafile/list',
     },
@@ -91,7 +91,7 @@ export default function Methodology() {
         <h2 className="text-lg font-bold text-gray-900 mb-4">A — Sources</h2>
         <ul className="space-y-3 text-sm text-gray-700">
           {[
-            'U.S. Dept. of Education, EADA data files (2003–2024): recruiting expenses, athletic aid, participation, revenues and expenses for every Title IV school with athletics. The only dataset here I process myself.',
+            'U.S. Dept. of Education, EADA data files (2003-04 through 2024-25): recruiting expenses, athletic aid, participation, revenues and expenses for every Title IV school with athletics. The only dataset here I process myself.',
             'Knight-Newhouse College Athletics Database: audited MFRS financial reports for 230+ public D1 schools; the authoritative D1 finance source.',
             'Opendorse "NIL at 3" report: the largest public NIL transaction dataset (150,000+ athletes, $250M+ disclosed), cited from the court-filed exhibit in House v. NCAA rather than marketing copy.',
             'House v. NCAA settlement documents and legal summaries.',
@@ -110,7 +110,7 @@ export default function Methodology() {
       <section className="mb-12">
         <h2 className="text-lg font-bold text-gray-900 mb-4">B — What I did to the EADA data</h2>
         <p className="text-sm text-gray-700 leading-relaxed mb-3">
-          Downloaded survey zips for 2015, 2019, 2024. Columns were auto-mapped with a printed,
+          Downloaded survey zips for 2014-15, 2018-19, 2024-25. Columns were auto-mapped with a printed,
           human-verified mapping. Currency fields coerced to numbers. Institutions reporting zero
           athletes were dropped (0 rows). Schools reporting $0 recruiting were kept in the lookup
           but excluded from medians (388 schools in 2024). Divisions classified from EADA

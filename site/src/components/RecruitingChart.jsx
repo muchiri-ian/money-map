@@ -28,8 +28,12 @@ const D1_LABELS = ['FBS', 'FCS', 'D1 No Football']
 
 const fmt = (v) => `$${Math.round(v).toLocaleString()}`
 
+// CSV year keys are the start of the academic year (e.g. 2024 = the 2024-25 survey)
+const acadYear = (y) => `${y}-${String((y + 1) % 100).padStart(2, '0')}`
+
 export default function RecruitingChart({ showShare = false }) {
   const [data, setData] = useState([])
+  const [latestYear, setLatestYear] = useState(null)
 
   useEffect(() => {
     Papa.parse('/data/division_summary.csv', {
@@ -48,6 +52,7 @@ export default function RecruitingChart({ showShare = false }) {
             share: Math.round(row.recruit_share_of_year * 100 * 10) / 10,
           }
         }).filter(Boolean)
+        setLatestYear(latest)
         setData(ordered)
       },
     })
@@ -59,9 +64,10 @@ export default function RecruitingChart({ showShare = false }) {
     ? data.map((d) => ({ ...d, value: d.share, label: `${d.share}%` }))
     : data.map((d) => ({ ...d, value: d.perAthlete, label: fmt(d.perAthlete) }))
 
+  const yearLabel = latestYear ? acadYear(latestYear) : ''
   const title = showShare
-    ? 'Share of all recruiting dollars by division (2024)'
-    : 'Median recruiting spend per athlete by division (2024)'
+    ? `Share of all recruiting dollars by division (${yearLabel})`
+    : `Median recruiting spend per athlete by division (${yearLabel})`
 
   const ariaLabel = showShare
     ? 'Bar chart: Division I programs account for 87.1% of all recruiting dollars. FBS alone: 66.5%. Division III: 5.4%, Division II: 4.2%, NAIA: 1.6%, JUCO: 1.2%.'
@@ -114,7 +120,7 @@ export default function RecruitingChart({ showShare = false }) {
         </ResponsiveContainer>
       </div>
       <figcaption className="source-caption">
-        <strong>Source:</strong> U.S. Department of Education, EADA data files (2015, 2019, 2024 surveys),
+        <strong>Source:</strong> U.S. Department of Education, EADA data files (2014-15, 2018-19, 2024-25 surveys),
         processed by an open pipeline (repo link on Methodology page). Schools reporting $0 recruiting
         excluded from medians. A small number of schools classified "Other" appear in the lookup but
         not this chart.

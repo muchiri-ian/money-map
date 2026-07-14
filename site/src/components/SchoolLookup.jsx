@@ -87,7 +87,7 @@ export default function SchoolLookup() {
       <h1 className="text-3xl font-black text-gray-900 mb-2">Look up any school</h1>
       <p className="text-gray-600 mb-8 text-sm leading-relaxed">
         Recruiting spend, athletic aid, and dollars per athlete for every Title IV school with an
-        athletics program, from the 2024 federal EADA survey.
+        athletics program, from the 2024-25 federal EADA survey.
       </p>
 
       <div className="relative">
@@ -125,7 +125,7 @@ export default function SchoolLookup() {
       </div>
 
       <p className="source-caption mt-8">
-        Source: U.S. Dept. of Education EADA, 2024 survey. Figures are institution-reported.
+        Source: U.S. Dept. of Education EADA, 2024-25 survey. Figures are institution-reported.
         Schools reporting zero athletes are excluded. Full cleaning steps on the{' '}
         <a href="/methodology" className="underline hover:text-gray-700">Methodology page</a>.
       </p>
