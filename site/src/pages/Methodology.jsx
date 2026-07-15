@@ -133,8 +133,8 @@ export default function Methodology() {
         </p>
         <p className="text-sm text-gray-500 leading-relaxed">
           An earlier pipeline version misclassified NAIA and Division III schools (regex pattern
-          bugs, documented and fixed in the repo history — see SLOTS_REPORT.md). All figures on
-          this site come from the corrected run.
+          bugs, documented and fixed in the repo history). All figures on this site come from
+          the corrected run.
         </p>
       </section>
 

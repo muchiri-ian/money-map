@@ -9,3 +9,13 @@ data/interim/
 # Node / Vite
 site/node_modules/
 site/dist/
+
+# Internal working docs — never publish
+HANDOFF*.md
+QA_REPORT*.md
+SLOTS_REPORT*.md
+docs/superpowers/
+plans/
+scratch/
+*.scratch.md
+*.plan.md
