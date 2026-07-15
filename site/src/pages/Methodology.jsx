@@ -122,12 +122,12 @@ export default function Methodology() {
           classification fields. Per-athlete metrics computed as spend divided by unduplicated
           participants. Code:{' '}
           <a
-            href="https://github.com/PressKit2026/money-map"
+            href="https://github.com/muchiri-ian/money-map"
             target="_blank"
             rel="noopener noreferrer"
             className="text-red-600 underline hover:text-red-800"
           >
-            github.com/PressKit2026/money-map
+            github.com/muchiri-ian/money-map
           </a>
           . Anyone can rerun it.
         </p>
