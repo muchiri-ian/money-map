@@ -22,7 +22,7 @@ export default function Home() {
       {/* Hero */}
       <section className="bg-gray-900 text-white py-20 px-6">
         <div className="max-w-3xl mx-auto">
-          <p className="text-xs font-semibold uppercase tracking-widest text-red-400 mb-4">Vol. 1 — July 2026</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-red-400 mb-4">Vol. 1, July 2026</p>
           <h1 className="text-4xl sm:text-6xl font-black leading-tight mb-3">
             The Overlooked<br />Athlete Economy
           </h1>
@@ -65,8 +65,8 @@ export default function Home() {
           <p className="text-gray-700 leading-relaxed mb-4">
             The money in college sports concentrates on athletes who are already visible. Recruiting
             budgets, NIL collectives, and the new revenue-share pool all point at the same small
-            group, while the pipelines that produce comparable talent — junior colleges, mid-majors,
-            and late developers — operate largely outside the spotlight. The numbers below are not a
+            group, while the pipelines that produce comparable talent, junior colleges, mid-majors,
+            and late developers, operate largely outside the spotlight. The numbers below are not a
             critique. They are a map.
           </p>
           <p className="text-gray-700 leading-relaxed">

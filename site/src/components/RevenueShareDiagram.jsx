@@ -37,7 +37,7 @@ export default function RevenueShareDiagram() {
               className="flex items-center justify-center bg-red-600 text-white text-sm font-bold"
               style={{ width: '95%' }}
             >
-              95% — Football &amp; Basketball (Power Conferences)
+              95%: Football &amp; Basketball (Power Conferences)
             </div>
             <div
               className="flex items-center justify-center bg-gray-200 text-gray-600 text-xs font-semibold"

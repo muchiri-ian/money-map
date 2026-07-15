@@ -22,7 +22,7 @@ export default function App() {
         </main>
         <footer className="border-t border-gray-200 py-8 mt-16">
           <div className="max-w-3xl mx-auto px-6 text-center text-sm text-gray-500">
-            <p>The Overlooked Athlete Economy — Vol. 1: The Money Map</p>
+            <p>The Overlooked Athlete Economy, Vol. 1: The Money Map</p>
             <p className="mt-1">Data: U.S. Dept. of Education EADA, 2024-25 survey. Every number traces to a public source.</p>
           </div>
         </footer>

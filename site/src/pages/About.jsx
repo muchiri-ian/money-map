@@ -19,7 +19,7 @@ export default function About() {
       </div>
       <p className="text-base text-gray-700 leading-relaxed mb-6">
         I'm also the founder of Motion, an AI-powered recruiting platform for athletes outside
-        the spotlight. Building it is what taught me where the market actually breaks — and this
+        the spotlight. Building it is what taught me where the market actually breaks. This
         project is what happens when you put real numbers under it.
       </p>
       <p className="text-base text-gray-700 leading-relaxed mb-6">

@@ -93,7 +93,7 @@ export default function Methodology() {
 
       {/* A — Sources */}
       <section className="mb-12">
-        <h2 className="text-lg font-bold text-gray-900 mb-4">A — Sources</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-4">A. Sources</h2>
         <ul className="space-y-3 text-sm text-gray-700">
           {[
             'U.S. Dept. of Education, EADA data files (2003-04 through 2024-25): recruiting expenses, athletic aid, participation, revenues and expenses for every Title IV school with athletics. The only dataset here I process myself.',
@@ -113,7 +113,7 @@ export default function Methodology() {
 
       {/* B — What I did to the EADA data */}
       <section className="mb-12">
-        <h2 className="text-lg font-bold text-gray-900 mb-4">B — What I did to the EADA data</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-4">B. What I did to the EADA data</h2>
         <p className="text-sm text-gray-700 leading-relaxed mb-3">
           Downloaded survey zips for 2014-15, 2018-19, 2024-25. Columns were auto-mapped with a printed,
           human-verified mapping. Currency fields coerced to numbers. Institutions reporting zero
@@ -140,7 +140,7 @@ export default function Methodology() {
 
       {/* C — Limitations */}
       <section className="mb-12">
-        <h2 className="text-lg font-bold text-gray-900 mb-4">C — Limitations, stated plainly</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-4">C. Limitations, stated plainly</h2>
         <ol className="space-y-3 text-sm text-gray-700 list-decimal list-inside">
           {[
             'EADA is self-reported; year-over-year jumps can reflect reporting changes rather than real spending changes.',
@@ -158,7 +158,7 @@ export default function Methodology() {
 
       {/* D — Citations table */}
       <section>
-        <h2 className="text-lg font-bold text-gray-900 mb-4">D — Citations</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-4">D. Citations</h2>
         <div className="overflow-x-auto rounded-xl border border-gray-200">
           <table className="w-full text-xs text-left">
             <thead className="bg-gray-50 border-b border-gray-200">
